@@ -3,6 +3,7 @@ import sys
 import argparse
 import string
 import random
+import base64
 
 def round_up(number): return int(number) + (number % 1 > 0)
 
@@ -46,10 +47,10 @@ if __name__ == '__main__':
     output_file = ''
     if not args.output_file:
         rando = ''.join(random.choice(string.ascii_letters) for i in range(10))
-        output_file = f'{rando}.txt'
+        print(base64.b64encode(enc_data).decode('ascii'))
     else:
         output_file = args.output_file
-    output = open(f'{output_file}', 'wb')
-    output.write(enc_data)
-    output.close()
+        output = open(f'{output_file}', 'wb')
+        output.write(enc_data)
+        output.close()
 
